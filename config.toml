@@ -1,0 +1,116 @@
+title = "Prathyush Dommata"
+disqusShortname = "pdommata"
+enableGitInfo = true
+#googleAnalytics = "UA-39897312-4"
+DefaultContentLanguage = "pr"
+baseURL = "https://example.com"
+defaultContentLanguageInSubdir = "true"
+
+[params]
+    profilePic = "/images/profile01.png"
+    author = "Prathyush Dommata"
+    accent = "darkblue"
+    showBorder = true
+    backgroundColor = "white"
+    font = "Raleway" # should match the name on Google Fonts!
+    highlight = true
+    highlightStyle = "solarized-dark"
+    highlightLanguages = ["javascript", "bash", "csharp", "python", "php"]
+
+[languages]
+    [languages.pr]
+        languageName = "PROFESSIONAL"
+        weight = 1
+        contentDir = "content/professional"
+        description = "Devops | Cloud | Site Reliability | Engineer"
+        fields = "AWS, Monitoring, CI/CD, Containerisation, Provisioning, Configuration Management"
+
+    [languages.pe]
+        languageName = "PERSONAL"
+        weight = 2
+        contentDir = "content/personal"
+        description = "Photography | Writing | Spirtuality"
+        fields = "Enthusiastic towards arts"
+
+[[languages.pr.menu.main]]
+    url = "/"
+    name = "Home"
+    weight = 1
+
+[[languages.pe.menu.main]]
+    url = "/"
+    name = "Home"
+    weight = 1
+
+[[languages.pr.menu.main]]
+    #url = "http://localhost:1313/CV_prathyush_dommata.pdf"
+    url = "/CV/"
+    name = "CV"
+    weight = 5
+
+[[languages.pe.menu.main]]
+    url = "/article/"
+    name = "Blog"
+    weight = 3
+
+#[[languages.pe.menu.main]]
+#    identifier = "teaching"
+#    name = "Enseignement"
+#    weight = 4
+
+#[[languages.pe.menu.main]]
+#    url = "/course/"
+#    name = "Modules de cours"
+#    parent = "teaching"
+#    weight = 1
+
+[[languages.pr.menu.main]]
+    name = "Professional Experience"
+    url = "/page/prof_experience/"
+    weight = 2
+
+[[languages.pr.menu.main]]
+    name = "Learning"
+    url = "/Learning/"
+    weight = 3
+
+[[languages.pr.menu.main]]
+    name = "About"
+    url = "/page/about/"
+    weight = 2
+
+# Social icons to be shown on the right-hand side of the navigation bar
+# The "name" field should match the name of the icon to be used
+# The list of available icons can be found at http://fontawesome.io/icons/
+
+[[languages.pr.menu.icon]]
+    url = "mailto:prathyush.devops [at] gmail [dot] com"
+    name = "envelope-o"
+    title = "Mail"
+    weight = 1
+
+[[languages.pe.menu.icon]]
+    url = "mailto:dommata.huf039 [at] gmail [dot] com"
+    name = "envelope-o"
+    title = "Mail"
+    weight = 1
+
+[[languages.pr.menu.icon]]
+    url = "https://github.com/prathyushreddy123"
+    name = "github"
+    title = "GitHub"
+    weight = 2
+
+
+[[languages.pr.menu.icon]]
+    url = "https://www.linkedin.com/in/prathyush-devops/"
+    name = "linkedin"
+    title = "LinkedIn"
+    weight = 6
+
+[related]
+includeNewer = true   # Here our relationship is timeless! This prevents Hugo from ignoring newer posts.
+
+[[related.indices]]
+    name = "course"   # The name of the indice, same as Front Matter's .Param key.
+    weight = 1        # We don't really need this, but omitting it would disable the indice.

@@ -1,0 +1,74 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <a class="navbar-brand visible-xs" href="#">{{ .Title }}</a>
+
+            <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse">
+
+            {{ if .Site.Menus.main }}
+            <ul class="nav navbar-nav">
+                {{ range sort .Site.Menus.main }}
+                {{ if .HasChildren }}
+                <li class="dropdown">
+                    <a href="{{ .URL | absLangURL }}" class="nav-link dropdown-toggle" id="{{ .Name }}"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ .Name }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Only 1 level of dropdown permitted - create links for children. -->
+                        {{ range .Children }}
+                        <li><a class="dropdown-item" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{ else }}
+                <!-- No children so just add a link. -->
+                <li>
+                    <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+                {{ end }}
+            </ul>
+            {{ end }}
+            {{ if .Site.Menus.icon }}
+            <ul class="nav navbar-nav navbar-right">
+                {{ range sort .Site.Menus.icon }}
+                <li class="navbar-icon">
+                    <a href="{{ .URL }}" title="{{ .Title }}">
+                        <i class="fa fa-{{ .Name }} fa-lg"></i>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+            {{ end }}
+            <ul class="nav navbar-nav navbar-right">
+                {{ if .IsTranslated }}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">{{ .Language.LanguageName }} <span class="caret"></span></a>
+                    <ul id="dropdown-menu-language" class="dropdown-menu">
+                        {{ range .Translations }}
+                        <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{ else }}
+                <p class="navbar-text">{{ .Language.LanguageName }}</p>
+                {{ end }}
+            </ul>
+        </div>
+
+    </div>
+
+</nav>

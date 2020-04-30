@@ -1,0 +1,51 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+
+<p class="single-info">
+    <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+        Dernière mise à jour le {{ .Lastmod.Day }} {{ index $.Site.Data.mois (printf "%d" .Lastmod.Month) }}
+        {{ .Lastmod.Year }}.
+    </time>
+    <br>
+</p>
+
+<div class="text-justify">
+
+    <!-- related presentations -->
+    {{ $related := where ( .Site.RegularPages.RelatedIndices . "course" ) "Type" "slides" }}
+    {{ with $related }}
+    <h2>{{ i18n "relatedPresentations" }}</h2>
+    <ul>
+        {{ range .ByWeight }} {{ .Render "li" }} {{ end }}
+    </ul>
+    {{ end }}
+
+    <!-- related publications -->
+    {{ $related := where ( .Site.AllPages.RelatedIndices . "course" ) "Type" "publication" }}
+    {{ with $related }}
+    <h2>{{ i18n "relatedPublications" }}</h2>
+    <ul>
+        {{ range .ByPublishDate.Reverse }} {{ .Render "li" }} {{ end }}
+    </ul>
+    {{ end }}
+
+    <!-- related articles -->
+    {{ $related := where ( .Site.RegularPages.RelatedIndices . "course" ) "Type" "article" }}
+    {{ with $related }}
+    <h2>{{ i18n "relatedArticles" }}</h2>
+    <ul>
+        {{ range .ByDate.Reverse }} {{ .Render "li" }} {{ end }}
+    </ul>
+    {{ end }}
+
+    <p>{{ .Content }}</p>
+
+</div>
+
+{{ if and .Site.DisqusShortname (not .Params.disableComments) }}
+<h2 class="page-header">{{ i18n "comments" }}</h2>
+{{ template "_internal/disqus.html" . }}
+{{ end }}
+{{ end }}

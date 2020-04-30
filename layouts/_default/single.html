@@ -1,0 +1,23 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+    <h1>{{ .Title }}</h1>
+
+    <p class="single-info">
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+            Publié le {{ .Date.Day }} {{ index $.Site.Data.mois (printf "%d" .Date.Month) }} {{ .Date.Year }}. Dernière mise à jour le {{ .Lastmod.Day }} {{ index $.Site.Data.mois (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}.
+        </time>
+        <br>
+        {{ i18n "readingTime" .ReadingTime }}.
+        <br>
+    </p>
+
+    <p>
+        <div class="text-justify">{{ .Content }}</div>
+    </p>
+
+    {{ if and .Site.DisqusShortname (not .Params.disableComments) }}
+        <h3 class="page-header">{{ i18n "comments" }}</h3>
+        {{ template "_internal/disqus.html" . }}
+    {{ end }}
+{{ end }}

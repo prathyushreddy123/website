@@ -1,0 +1,17 @@
+{{ define "main" }}
+    
+    <h1>{{ .Title }}</h1>
+    <!-- show pages list, if any -->
+    {{ range .RegularPages }} {{ .Render "summary" }} {{ end }}
+    {{ range .Sections }}
+        <h2>{{ .Title }}</h2>
+        <!-- show pages list, if any -->
+        {{ range .Pages }} {{ .Render "summary" }} {{ end }}
+        <!-- Iterate on sections -->
+        {{ range .Sections }}
+            <h3>{{ .Title }}</h3>
+            {{ range .Pages }} {{ .Render "summary" }} {{ end }}
+        {{ end }}
+    {{ end }}
+
+{{ end }}

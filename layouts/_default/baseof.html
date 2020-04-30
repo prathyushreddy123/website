@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    <meta charset="utf-8">
+
+    {{ partial "style" . }}
+
+    <title>{{ block "title" . }}
+        {{ .Site.Title }} 
+    {{ end }}</title>
+</head>
+
+<body>
+    {{ partial "nav" . }}
+
+    <main class="container">
+        {{ block "main" . }}
+        {{ end }}
+    </main>
+
+    {{ partial "js" . }}
+</body>
+
+</html>
